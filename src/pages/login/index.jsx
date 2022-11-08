@@ -19,6 +19,10 @@ const Login = () => {
         mode: 'onChange',
     });
 
+    const handleRedirectToSignIn = () => {
+        navigate('/createAccount')
+    }
+
     const onSubmit = async (formData) => {
         try{
             const {data} = await api.get(`/users?email=${formData.email}&senha=${formData.senha}`);
@@ -31,6 +35,7 @@ const Login = () => {
             alert('Usuário ou senha inválido')
         }catch(e){
             //TODO: HOUVE UM ERRO
+            alert('Não foi possível completar sua requisição. Tente novamente mais tarde.')
         }
     };
 
@@ -56,7 +61,7 @@ const Login = () => {
                 </form>
                 <Row>
                     <EsqueciText>Esqueci minha senha</EsqueciText>
-                    <CriarText>Criar Conta</CriarText>
+                    <CriarText onClick={handleRedirectToSignIn}>Criar Conta</CriarText>
                 </Row>
                 </Wrapper>
             </Column>
